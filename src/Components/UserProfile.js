@@ -1,7 +1,7 @@
 import React from "react";
 
-function Recipe() {
+function UserProfile() {
   return <div></div>;
 }
 
-export default Recipe;
+export default UserProfile;
