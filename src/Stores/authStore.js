@@ -14,7 +14,7 @@ class AuthStore {
     localStorage.setItem("myToken", token);
   };
   //a function that will allow user to sign up
-  signUpMethod = async (user) => {
+  signUp = async (user) => {
     try {
       const response = await api.post("/signup", user);
       //giving the user a token
@@ -28,7 +28,7 @@ class AuthStore {
     }
   };
 
-  signInMethod = async (user) => {
+  signIn = async (user) => {
     try {
       const response = await api.post("/signin", user);
       //giving the user a token

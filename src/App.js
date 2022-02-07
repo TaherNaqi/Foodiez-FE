@@ -3,11 +3,12 @@ import "./App.css";
 import HomePage from "./Components/HomePage";
 import Recipe from "./Components/Recipe";
 import UserProfile from "./Components/UserProfile";
-import Navbar from "./Components/Navbar";
+import MyNavbar from "./Components/MyNavbar";
 
 function App() {
   return (
     <div>
+      <MyNavbar />
       {/*creating website path for main pages and detailed page*/}
       <Routes>
         <Route path="/" element={<HomePage />} />
