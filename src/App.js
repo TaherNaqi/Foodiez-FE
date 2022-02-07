@@ -4,6 +4,7 @@ import HomePage from "./Components/HomePage";
 import Recipe from "./Components/Recipe";
 import UserProfile from "./Components/UserProfile";
 import MyNavbar from "./Components/MyNavbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Recipe" element={<Recipe />} />
-        <Route path="/Profile" element={<UserProfile />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </div>
   );

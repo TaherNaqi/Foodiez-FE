@@ -19,7 +19,7 @@ class RecipeStore {
   fetchRecipe = async (_id) => {
     try {
       //using param and _id that the user wrote to show the write recipe
-      const response = await api.get(`/resipes/:${recipeId}`, _id);
+      const response = await api.get(`/recipes/:${_id}`);
       this.recipe = response.data;
     } catch (error) {
       console.log(console.error());
