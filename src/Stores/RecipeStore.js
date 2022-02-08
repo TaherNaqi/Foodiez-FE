@@ -3,6 +3,7 @@ import api from "./api";
 class RecipeStore {
   //array to store the recipes
   recipe = [];
+  loading = true;
   constructor() {
     makeAutoObservable(this, {});
   }
@@ -11,6 +12,7 @@ class RecipeStore {
     try {
       const response = await api.get("/recipes");
       this.recipe = response.data;
+      this.loading = false;
     } catch (error) {
       console.log(console.error());
     }

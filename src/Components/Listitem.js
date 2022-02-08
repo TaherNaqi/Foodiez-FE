@@ -21,10 +21,9 @@ function Listitem({ recipe }) {
       <Card.Body>
         <Link to={`/recipe/${recipe.slug}`}>
           <Card.Img variant="top" src={recipe.image} className="img-card" />
-        </Link>
-        <a href="#" className="title-text">
+
           <Card.Title>{recipe.name}</Card.Title>
-        </a>
+        </Link>
       </Card.Body>
     </Card>
   );

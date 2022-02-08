@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./Components/HomePage";
-import Recipe from "./Components/Recipe";
+import RecipeList from "./Components/RecipeList";
 import UserProfile from "./Components/UserProfile";
 import MyNavbar from "./Components/MyNavbar";
+import Detail from "./Components/Detail";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       {/*creating website path for main pages and detailed page*/}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/Recipe" element={<Recipe />} />
+        <Route path="/recipelist" element={<RecipeList />} />
+        <Route path="/recipe/:slug" element={<Detail />} />
         <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </div>
