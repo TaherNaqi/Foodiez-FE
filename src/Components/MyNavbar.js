@@ -1,14 +1,6 @@
-import React, { Component } from "react";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-} from "react-bootstrap";
-import { Link, NavLink, Route } from "react-router-dom";
+import React from "react";
+import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import SignUpModal from "./SignUpModal";
 import SignInModal from "./SignInModal";
 import authStore from "../Stores/authStore";
