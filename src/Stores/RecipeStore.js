@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import api from "./api";
 class RecipeStore {
   //array to store the recipes
-  recipe = [];
+  recipes = [];
   loading = true;
   constructor() {
     makeAutoObservable(this, {});
@@ -11,7 +11,7 @@ class RecipeStore {
   fetchRecipes = async () => {
     try {
       const response = await api.get("/recipes");
-      this.recipe = response.data;
+      this.recipes = response.data;
       this.loading = false;
     } catch (error) {
       console.log(console.error());
@@ -22,7 +22,7 @@ class RecipeStore {
     try {
       //using param and _id that the user wrote to show the write recipe
       const response = await api.get(`/recipes/:${_id}`);
-      this.recipe = response.data;
+      this.recipes = response.data;
     } catch (error) {
       console.log(console.error());
     }
@@ -31,7 +31,7 @@ class RecipeStore {
   createRecipe = async (newRecipe) => {
     try {
       const response = await api.post("/recipes", newRecipe);
-      this.recipe.push(response.data); //we will add the new recipe to the list "recipe array"
+      this.recipes.push(response.data); //we will add the new recipe to the list "recipe array"
     } catch (e) {
       alert("cannot create new recipe");
       console.log(e);
@@ -40,10 +40,10 @@ class RecipeStore {
   updateRecipe = async (recipe, recipeId) => {
     try {
       const response = await api.put(`/recipe/${recipeId}`, recipe);
-      const temprecipe = this.recipe.map((recipeElement) =>
+      const tempRecipe = this.recipes.map((recipeElement) =>
         recipeElement.id === recipeId ? response.data : recipeElement
       );
-      this.recipe = temprecipe;
+      this.recipes = tempRecipe;
     } catch (error) {
       console.log(error);
     }

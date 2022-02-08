@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import api from "./api";
 class CategoryStore {
   //array to store the categoryies
-  category = [];
+  categories = [];
   constructor() {
     makeAutoObservable(this, {});
   }
@@ -10,7 +10,7 @@ class CategoryStore {
   fetchCategoryies = async () => {
     try {
       const response = await api.get("/PUT PATH HERE");
-      this.category = response.data;
+      this.categories = response.data;
     } catch (error) {
       console.log(console.error());
     }
@@ -19,7 +19,7 @@ class CategoryStore {
   createCategory = async (newCategory) => {
     try {
       const response = await api.post("/PUT PATH HERE", newCategory);
-      this.category.push(response.data); //we will add the new category to the list "category array"
+      this.categories.push(response.data); //we will add the new category to the list "category array"
     } catch (e) {
       alert("cannot create new category");
       console.log(e);

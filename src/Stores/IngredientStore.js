@@ -10,7 +10,7 @@ class IngredientStore {
   fetchIngredients = async () => {
     try {
       const response = await api.get("/ingredients");
-      this.ingredient = response.data;
+      this.ingredients = response.data;
     } catch (error) {
       console.log(console.error());
     }
@@ -18,7 +18,7 @@ class IngredientStore {
   createIngredient = async (newIngredient) => {
     try {
       const response = await api.post("/ingredients", newIngredient);
-      this.ingredient.push(response.data); //we will add the new ingredient to the list "ingredient array"
+      this.ingredients.push(response.data); //we will add the new ingredient to the list "ingredient array"
     } catch (e) {
       alert("cannot create new ingredient");
       console.log(e);

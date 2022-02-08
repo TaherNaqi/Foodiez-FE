@@ -9,7 +9,7 @@ function Profile() {
   const [user, setUser] = useState({
     username: authStore.user.username,
   });
-  let recipesList = recipeStore.recipe
+  let recipesList = recipeStore.recipes
     .filter((r) => r.owner.id === authStore.user.id)
     .map((recipe) => <Listitem recipe={recipe} key={recipe._id} />);
   return (

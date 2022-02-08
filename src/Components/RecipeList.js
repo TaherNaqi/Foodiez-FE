@@ -9,7 +9,7 @@ import { Container } from "react-bootstrap";
 function RecipeList() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
-  let recipeList = recipeStore.recipe
+  let recipeList = recipeStore.recipes
     .filter((recipe) =>
       recipe.name.toLowerCase().includes(query.toLocaleLowerCase())
     )

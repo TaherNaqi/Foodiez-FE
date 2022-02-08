@@ -9,15 +9,15 @@ function Detail() {
   if (recipeStore.loading) {
     return <h1>Loading</h1>;
   }
-  let recipe = recipeStore.recipe.find((recipe) => recipe.slug === slug);
+  let recipe = recipeStore.recipes.find((recipe) => recipe.slug === slug);
 
   return (
     <Container fluid>
       <Card className="d-flex align-items-center ">
-        <img className="img-detail" src={recipe.image} alt="recipe" />
+        <img className="img-detail" src={recipe.image} />
 
-        <Card.Title style={{ marginTop: "30px", fontWeight: "bold" }}>
-          <h4>Recipe Details</h4>
+        <Card.Title>
+          <h3 className="card-title">Recipe Details</h3>
         </Card.Title>
 
         <Card.Body>
