@@ -3,7 +3,6 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 function Listitem({ recipe }) {
-  console.log(recipe);
   return (
     <Card className="card-list">
       <Card.Body>

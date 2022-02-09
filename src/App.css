@@ -15,7 +15,7 @@
 }
 
 .nav-sign {
-  background-color: #f76e11 !important;
+  background-color: #e5b078a1 !important;
 }
 /*Sign in and sign up*/
 .card-list {
@@ -30,7 +30,7 @@
   color: black;
 }
 .link:hover {
-  color: #f76e11;
+  color: #e5b078a1;
   transition: 0.3s;
 }
 .img-detail {
@@ -39,4 +39,7 @@
 }
 .card-image {
   border-radius: 30px !important;
+}
+.background-grey {
+  background-color: gray;
 }

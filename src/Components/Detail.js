@@ -14,7 +14,15 @@ function Detail() {
   return (
     <Container fluid>
       <Card className="d-flex align-items-center ">
-        <img className="img-detail" src={recipe.image} alt="recipe" />
+        <img
+          className="img-detail"
+          src={
+            recipe.image
+              ? recipe.image
+              : "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505"
+          }
+          alt="recipe"
+        />
 
         <Card.Title style={{ marginTop: "30px", fontWeight: "bold" }}>
           <h4>Recipe Details</h4>

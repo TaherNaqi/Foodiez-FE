@@ -7,6 +7,7 @@ import UserProfile from "./Components/UserProfile";
 import MyNavbar from "./Components/MyNavbar";
 import Detail from "./Components/Detail";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
@@ -24,6 +25,3 @@ function App() {
 }
 
 export default App;
-//<Route path="/Recipe/:slug" element={<Ingrediant/>}/>
-//<Route path="/Recipe/Ingrediant" element={<Ingrediant/>}/>
-//<Route path="/userProfile" element={<Ingrediant/>}/>

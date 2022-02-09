@@ -6,9 +6,6 @@ import { Container, Badge } from "react-bootstrap";
 import Listitem from "./Listitem";
 import { observer } from "mobx-react";
 function Profile() {
-  const [user, setUser] = useState({
-    username: authStore.user.username,
-  });
   let recipesList = recipeStore.recipes
     .filter((r) => r.owner.id === authStore.user.id)
     .map((recipe) => <Listitem recipe={recipe} key={recipe._id} />);
