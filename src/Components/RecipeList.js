@@ -14,7 +14,6 @@ function RecipeList() {
       recipe.name.toLowerCase().includes(query.toLocaleLowerCase())
     )
     .map((recipe) => <Listitem recipe={recipe} key={recipe._id} />);
-
   return (
     <Container className="background">
       <SearchBar setQuery={setQuery} />

@@ -21,8 +21,8 @@ function SignUpModal() {
   return (
     <>
       <Button
-        variant="outline-secondary"
-        className="delete"
+        variant="outlined-secondary"
+        className="nav-sign"
         onClick={() => setIsOpen(true)}
       >
         Sign Up

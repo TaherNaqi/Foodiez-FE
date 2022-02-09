@@ -14,19 +14,19 @@ function Detail() {
   return (
     <Container fluid>
       <Card className="d-flex align-items-center ">
-        <img className="img-detail" src={recipe.image} />
+        <img className="img-detail" src={recipe.image} alt="recipe" />
 
-        <Card.Title>
-          <h3 className="card-title">Recipe Details</h3>
+        <Card.Title style={{ marginTop: "30px", fontWeight: "bold" }}>
+          <h4>Recipe Details</h4>
         </Card.Title>
 
         <Card.Body>
           <Card.Title>Recipe name: {recipe.name}</Card.Title>
           <Card.Title>Recipe creator: {recipe.owner.username}</Card.Title>
           <Card.Title>
-            Ingredients:&nbsp;
+            Ingredients:
             {recipe.ingredients.map((ingredient) => (
-              <>{ingredient.name}&nbsp;</>
+              <>{ingredient.name}</>
             ))}
           </Card.Title>
         </Card.Body>

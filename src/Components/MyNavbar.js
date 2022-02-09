@@ -13,13 +13,8 @@ function MyNavbar() {
         <Navbar sticky="top" bg="dark" variant="dark">
           <Container>
             <Nav.Item class="navbar-brand">
-              <span class="text-uppercase font-weight-bold">
-                Show the world your magic{" "}
-                {authStore.user ? authStore.user.username : ""}
-              </span>
+              <span class="font-weight-bold">Foodiez</span>
             </Nav.Item>
-
-            {/* <Navbar.Brand href="#home">Lets Save Your Money {authStore.user ? authStore.user.username : ""}</Navbar.Brand> */}
             <Nav className="mr-auto">
               <Nav.Link as={Link} to="/">
                 Home
@@ -34,10 +29,7 @@ function MyNavbar() {
                     Profile
                   </Nav.Link>
                   <Nav.Item>
-                    <Button
-                      variant="outline-secondary"
-                      onClick={authStore.logout}
-                    >
+                    <Button variant="danger" onClick={authStore.logout}>
                       Logout
                     </Button>
                   </Nav.Item>

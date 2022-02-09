@@ -1,121 +1,168 @@
-import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
-import recipeStore from "../stores/RecipeStore";
-import "react-datepicker/dist/react-datepicker.css";
+import { Form, Modal, Button } from "react-bootstrap";
+import recipeStore from "../Stores/RecipeStore";
 import categoryStore from "../Stores/CategoryStore";
-
-export default function createRecipe(props) {
+import { observer } from "mobx-react-lite";
+import ingredientStore from "../Stores/IngredientStore";
+function CreateRecipe() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [checkedCategory, setCheckedCategory] = useState(false);
+  const [checkedIngredient, setCheckedIngredient] = useState(false);
+  const categoryOptions = categoryStore.categories.map((Element) => (
+    <option value={Element._id} name={Element.name}>
+      {Element.name}
+    </option>
+  ));
+  const ingredientOptions = ingredientStore.ingredients.map((Element) => (
+    <option value={Element._id} name={Element.name}>
+      {Element.name}
+    </option>
+  ));
+  const category = categoryStore.categories.map((category) =>
+    console.log(category)
+  );
+  const givingCategory = true;
   const [recipe, setRecipe] = useState({
     name: "",
     image: "",
-    ingredient: "",
-    categories: "",
-    owner: "",
+    ingredients: [],
+    categories: [],
   });
   const handleChange = (e) => {
     setRecipe({ ...recipe, [e.target.name]: e.target.value });
   };
 
-  const handleCategory = () => {
-    category;
+  const handleSubmit = (e, newCategory) => {
+    if (givingCategory) {
+      e.preventDefault();
+      recipeStore.createRecipe(recipe);
+      setRecipe({
+        name: "",
+        image: "",
+        ingredients: [],
+        categories: [],
+      });
+    } else {
+      e.preventDefault();
+      recipeStore.createRecipe(recipe);
+      setRecipe({
+        name: "",
+        image: "",
+        ingredients: [],
+        categories: [newCategory],
+      });
+    }
+    handleClose(); // this is to close the modal that is shown
   };
-}
-/*
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(jam3ya);
-    jam3yaStore.createJam3ya(jam3ya);
-    setJam3ya({
-      title: "",
-      image: "",
-      amount:"",
-      limit: "",
-      startDate: "",
-      endDate:"",
-    })
-    props.closeModal(); // this is to close the modal that is shown
+  const changeCategory = (e) => {
+    recipe.categories.push(e.target.value);
+    console.log(recipe);
   };
-  return (
-    <Modal centered show={props.isOpen} onHide={props.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Create Jam3ya</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form onSubmit={handleSubmit}>
-              <InputGroup>
-                <InputGroup.Text>Title</InputGroup.Text>
-                <Form.Control
-                  value={jam3ya.title}
-                  type="text"
-                  name="title"
-                  onChange={handleChange}
-                />
-              </InputGroup>
-              <br />
-              <InputGroup>
-                <InputGroup.Text>Image</InputGroup.Text>
-                <Form.Control
-                  value={jam3ya.image}
-                  type="text"
-                  name="image"
-                  onChange={handleChange}
-                />
-              </InputGroup>
-              <br />
-             
-              <InputGroup>
-                <InputGroup.Text>Amount</InputGroup.Text>
-                <Form.Control
-                  type="number"
-                  name="amount"
-                  onChange={handleChange}
-                  value={jam3ya.amount}
-                />
-                </InputGroup>
-                <br />
-              <InputGroup>
-                <InputGroup.Text>Limit</InputGroup.Text>
-                <Form.Control
-                  type="number"
-                  name="limit"
-                  onChange={handleChange}
-                  value={jam3ya.limit}
-                />
-                </InputGroup>
-              <br />
-              <InputGroup>
-                <InputGroup.Text>Start Date</InputGroup.Text>
-                <Form.Control
-                type="date"
-                name="startDate"
-                onChange={handleChange}
-                value={jam3ya.startDate}
-                />
-        
-    
-               
-                </InputGroup>
-              <br />
-              <InputGroup>
-                <InputGroup.Text>End Date</InputGroup.Text>
-                <Form.Control
-                type="date"
-                name="endDate"
-                onChange={handleChange}
-                  value={jam3ya.endDate}
-                />
+  const handleBlurC = (e) => {
+    givingCategory = false;
+    let categoryOfBlur = { name: e.target.value };
 
-                </InputGroup>
-              <br />
-        
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleSubmit}>
-              Create Jam3ya
+    categoryStore.createCategory(categoryOfBlur);
+    const newCategory = categoryStore.find((Element) =>
+      Element.name == e.target.value ? Element._id : console.log("not found")
+    );
+    handleSubmit(newCategory);
+  };
+  const handleBlurI = (e) => {
+    console.log(e.target.value);
+    let ingredientOfBlur = { name: e.target.value };
+    console.log(ingredientOfBlur);
+    ingredientStore.createIngredient(ingredientOfBlur);
+    changeIngredient(e);
+  };
+  const changeIngredient = (e) => {
+    recipe.ingredients.push(e.target.value);
+  };
+  const handleCategory = () => {
+    setCheckedCategory(!checkedCategory);
+  };
+  const handleIngredient = () => {
+    setCheckedIngredient(!checkedIngredient);
+  };
+
+  return (
+    <>
+      <Button className="createButton" onClick={handleShow}>
+        Create Recipe
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title> Recipe!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Recipe</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                name="name"
+                type="text"
+                placeholder="Recipe Name"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>images</Form.Label>
+              <Form.Control
+                onChange={handleChange}
+                name="image"
+                type="text"
+                placeholder="image address"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>New Category</Form.Label>
+              <input onChange={handleCategory} name="check" type="checkbox" />
+              <Form.Label>New Ingredients</Form.Label>
+              <input onChange={handleIngredient} name="check" type="checkbox" />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <p>
+                {checkedIngredient ? (
+                  <Form.Control
+                    onBlur={handleBlurI}
+                    name="ingredients"
+                    type="text"
+                    placeholder="new ingredient name"
+                  />
+                ) : (
+                  <select onChange={changeIngredient} name="ingredients">
+                    {ingredientOptions}
+                  </select>
+                )}
+              </p>
+
+              <p>
+                {checkedCategory ? (
+                  <Form.Control
+                    onBlur={handleBlurC}
+                    name="category"
+                    type="text"
+                    placeholder="new category Name"
+                  />
+                ) : (
+                  <select onChange={changeCategory} name="categories">
+                    {categoryOptions}
+                  </select>
+                )}
+              </p>
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Submit!
             </Button>
-          </Modal.Footer>
-        </Modal>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
   );
-}*/
+}
+
+export default observer(CreateRecipe);

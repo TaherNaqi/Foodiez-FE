@@ -2,28 +2,26 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
-// import "./Card.css"
 function Listitem({ recipe }) {
+  console.log(recipe);
   return (
-    <Card
-      style={{
-        width: "18rem",
-        border: "5px solid",
-        borderRadius: "50px",
-        margin: "20px",
-      }}
-      className="cards__item__img"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+    <Card className="card-list">
       <Card.Body>
-        <Link to={`/recipe/${recipe.slug}`}>
-          <Card.Img variant="top" src={recipe.image} className="img-card" />
-
+        <Link to={`/recipe/${recipe.slug}`} className="link">
+          <Card.Img
+            variant="top"
+            src={
+              recipe.image
+                ? recipe.image
+                : "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505"
+            }
+            className="card-image"
+          />
+          <br />
+          <br />
           <Card.Title>{recipe.name}</Card.Title>
         </Link>
+        <Card.Text>Made by: {recipe.owner.username}</Card.Text>
       </Card.Body>
     </Card>
   );

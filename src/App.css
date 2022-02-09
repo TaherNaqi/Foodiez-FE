@@ -1,6 +1,3 @@
-body {
-  background-color: bisque;
-}
 .card-flex {
   display: flex;
   /* flex: 1 0 21%;
@@ -15,4 +12,31 @@ body {
 }
 .card-title {
   margin-top: 25px;
+}
+
+.nav-sign {
+  background-color: #f76e11 !important;
+}
+/*Sign in and sign up*/
+.card-list {
+  width: 18rem;
+  border: 6px solid !important;
+  border-color: #e5b078a1 !important;
+  border-radius: 30px !important;
+  margin: 20px;
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
+.link:hover {
+  color: #f76e11;
+  transition: 0.3s;
+}
+.img-detail {
+  width: 500px;
+  height: 500px;
+}
+.card-image {
+  border-radius: 30px !important;
 }
