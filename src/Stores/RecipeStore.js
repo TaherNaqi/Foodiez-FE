@@ -32,6 +32,7 @@ class RecipeStore {
     try {
       const response = await api.post("/recipes", newRecipe);
       this.recipes.push(response.data); //we will add the new recipe to the list "recipe array"
+      recipeStore.fetchRecipes();
     } catch (e) {
       alert("cannot create new recipe");
       console.log(e);

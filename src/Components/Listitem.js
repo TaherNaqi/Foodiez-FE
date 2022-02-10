@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 function Listitem({ recipe }) {
   return (
-    <Card className="card-list">
+    <Card className="card-list card-list-margin">
       <Card.Body>
         <Link to={`/recipe/${recipe.slug}`} className="link">
           <Card.Img

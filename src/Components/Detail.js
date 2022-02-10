@@ -12,8 +12,8 @@ function Detail() {
   let recipe = recipeStore.recipes.find((recipe) => recipe.slug === slug);
 
   return (
-    <Container fluid>
-      <Card className="d-flex align-items-center ">
+    <Container fluid className="card-list">
+      <Card className="d-flex align-items-center detail-margin ">
         <img
           className="img-detail"
           src={
@@ -24,7 +24,7 @@ function Detail() {
           alt="recipe"
         />
 
-        <Card.Title style={{ marginTop: "30px", fontWeight: "bold" }}>
+        <Card.Title className="detail-title">
           <h4>Recipe Details</h4>
         </Card.Title>
 

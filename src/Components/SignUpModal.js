@@ -21,47 +21,53 @@ function SignUpModal() {
   return (
     <>
       <Button
+        className="tra"
         variant="outlined-secondary"
-        className="nav-sign"
         onClick={() => setIsOpen(true)}
       >
         Sign Up
       </Button>
+
       <Modal centered show={isOpen} onHide={() => setIsOpen(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Sign up</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <InputGroup>
-              <InputGroup.Text>UserName</InputGroup.Text>
-              <Form.Control
+        <div class="login-box">
+          <h2>Sign Up</h2>
+          <form onSubmit={handleSubmit}>
+            <div class="user-box">
+              <input
                 name="username"
                 value={user.username}
                 type="text"
                 placeholder="username here"
                 onChange={handChange}
               />
-            </InputGroup>
-            <br />
-            <InputGroup>
-              <InputGroup.Text>Password</InputGroup.Text>
-              <Form.Control
+              <label>Username</label>
+            </div>
+            <div class="user-box">
+              <input
                 name="password"
                 value={user.password}
                 type="password"
                 placeholder="password here"
                 onChange={handChange}
               />
-            </InputGroup>
-            <br />
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-secondary" onClick={handleSubmit}>
-            Sign up
-          </Button>
-        </Modal.Footer>
+              <label>Password</label>
+            </div>
+            <a href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <Button
+                className="tra"
+                variant="outline-secondary"
+                onClick={handleSubmit}
+              >
+                Sign Up
+              </Button>{" "}
+              <SignUpModal />
+            </a>
+          </form>
+        </div>
       </Modal>
     </>
   );

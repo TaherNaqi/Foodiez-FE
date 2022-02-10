@@ -1,11 +1,23 @@
 import React from "react";
-
-const SearchBar = ({ setQuery }) => {
+import recipeStore from "../Stores/RecipeStore";
+import Listitem from "./Listitem";
+import { useState } from "react";
+const SearchBar = ({ setRecipeList }) => {
+  const [query, setQuery] = useState("");
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+    const recipes = recipeStore.recipes
+      .filter((recipe) =>
+        recipe.name.toLowerCase().includes(query.toLowerCase())
+      )
+      .map((recipe) => <Listitem recipe={recipe} key={recipe._id} />);
+    setRecipeList(recipes);
+  };
   return (
     <div className="searchar">
       <input
         className="searchbar"
-        onChange={(event) => setQuery(event.target.value)}
+        onChange={handleChange}
         placeholder="search by name"
       />
     </div>

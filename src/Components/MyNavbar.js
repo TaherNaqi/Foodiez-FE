@@ -11,10 +11,13 @@ function MyNavbar() {
     return (
       <>
         <Navbar sticky="top" bg="dark" variant="dark">
+          <Nav.Item class="navbar-brand">
+            <img
+              className="imaging"
+              src="https://cdn.worldvectorlogo.com/logos/my-recipes.svg"
+            />
+          </Nav.Item>{" "}
           <Container>
-            <Nav.Item class="navbar-brand">
-              <span class="font-weight-bold">Foodiez</span>
-            </Nav.Item>
             <Nav className="mr-auto">
               <Nav.Link as={Link} to="/">
                 Home
@@ -35,14 +38,7 @@ function MyNavbar() {
                   </Nav.Item>
                 </>
               ) : (
-                <>
-                  <Nav.Item className="mx-1">
-                    <SignUpModal />
-                  </Nav.Item>
-                  <Nav.Item className="mx-1">
-                    <SignInModal />
-                  </Nav.Item>
-                </>
+                <></>
               )}
             </Nav>
           </Container>

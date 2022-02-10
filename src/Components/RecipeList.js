@@ -1,49 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Listitem from "./Listitem";
 import recipeStore from "../Stores/RecipeStore";
 import { observer } from "mobx-react";
 import SearchBar from "./SearchBar";
-import { Container, Dropdown } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import categoryStore from "../Stores/CategoryStore";
+import CreateRecipe from "./CreateRecipe";
+import authStore from "../Stores/authStore";
 
 function RecipeList() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState("");
-  let recipeList = recipeStore.recipes
-    .filter((recipe) => recipe.name.toLowerCase().includes(query.toLowerCase()))
-    .map((recipe) => <Listitem recipe={recipe} key={recipe._id} />);
-  let categoryList = categoryStore.categories;
+  const [recipeList, setRecipeList] = useState();
+
+  useEffect(() => {
+    setRecipeList(
+      recipeStore.recipes.map((recipe) => (
+        <Listitem recipe={recipe} key={recipe._id} />
+      ))
+    );
+  }, []);
+
   const handleCategory = (c) => {
-    // console.log(c);
-    // recipeList = recipeStore.recipes.map((recipe) =>
-    //   recipe.categories
-    //     .filter((category) => category.name.toLowerCase() === c.toLowerCase())
-    //     .map((recipe) => <Listitem recipe={recipe} key={recipe._id} />)
-    // );
+    const catrgory = categoryStore.categories.find(
+      (category) => category._id == c.target.value
+    );
+    setRecipeList(
+      catrgory.recipes.map((recipe) => (
+        <Listitem recipe={recipe} key={recipe._id} />
+      ))
+    );
   };
-  console.log(recipeList);
   return (
     <Container>
       <center>
         <div>
           <h2>Recipe List</h2>
         </div>
-        <SearchBar setQuery={setQuery} />
+        <SearchBar setRecipeList={setRecipeList} />{" "}
+        {authStore.user ? <CreateRecipe /> : <></>}
         <div>
           <br />
-          <Dropdown>
-            <Dropdown.Toggle variant="" id="dropdown-basic">
-              Categories
-            </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              {categoryList.map((category) => (
-                <Dropdown.Item onClick={handleCategory(category.name)}>
-                  {category.name}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
+          <select onChange={handleCategory}>
+            <option>Category</option>
+            {categoryStore.categories.map((category) => (
+              <option value={category._id}>{category.name}</option>
+            ))}
+          </select>
         </div>
       </center>
 
