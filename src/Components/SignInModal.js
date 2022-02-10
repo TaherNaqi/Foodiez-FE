@@ -1,6 +1,7 @@
 import { Modal, Button, Form, InputGroup } from "react-bootstrap";
 import React, { useState } from "react";
 import authStore from "../Stores/authStore";
+
 function SignInModal() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,6 +44,7 @@ function SignInModal() {
               />
             </InputGroup>
             <br />
+
             <InputGroup>
               <InputGroup.Text>Password</InputGroup.Text>
               <Form.Control
