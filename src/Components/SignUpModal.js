@@ -1,6 +1,7 @@
 import { Modal, Button, Form, InputGroup } from "react-bootstrap";
 import React, { useState } from "react";
 import authStore from "../Stores/authStore";
+import { Navigate } from "react-router-dom";
 
 function SignUpModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ function SignUpModal() {
     password: "",
     email: "",
   });
+
   const handChange = (event) =>
     setUser({ ...user, [event.target.name]: event.target.value });
 
@@ -16,58 +18,53 @@ function SignUpModal() {
     event.preventDefault();
     authStore.signUp(user);
     setIsOpen(false);
+    <Navigate to="/recipelist" />;
   };
 
   return (
     <>
       <Button
-        className="tra"
-        variant="outlined-secondary"
+        variant="outline-secondary"
+        className="delete"
         onClick={() => setIsOpen(true)}
       >
         Sign Up
       </Button>
-
       <Modal centered show={isOpen} onHide={() => setIsOpen(false)}>
-        <div class="login-box">
-          <h2>Sign Up</h2>
-          <form onSubmit={handleSubmit}>
-            <div class="user-box">
-              <input
+        <Modal.Header closeButton>
+          <Modal.Title>Sign up</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <InputGroup>
+              <InputGroup.Text>UserName</InputGroup.Text>
+              <Form.Control
                 name="username"
                 value={user.username}
                 type="text"
                 placeholder="username here"
                 onChange={handChange}
               />
-              <label>Username</label>
-            </div>
-            <div class="user-box">
-              <input
+            </InputGroup>
+            <br />
+            <InputGroup>
+              <InputGroup.Text>Password</InputGroup.Text>
+              <Form.Control
                 name="password"
                 value={user.password}
                 type="password"
                 placeholder="password here"
                 onChange={handChange}
               />
-              <label>Password</label>
-            </div>
-            <a href="#">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <Button
-                className="tra"
-                variant="outline-secondary"
-                onClick={handleSubmit}
-              >
-                Sign Up
-              </Button>{" "}
-              <SignUpModal />
-            </a>
-          </form>
-        </div>
+            </InputGroup>
+            <br />
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-secondary" onClick={handleSubmit}>
+            Sign up
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );

@@ -103,7 +103,7 @@ html {
 }
 body {
   font-family: sans-serif;
-  background: linear-gradient(#ffa84a, #e5b078ef);
+  background: linear-gradient(#e5b078ef, #e5b078ef);
 }
 
 .login-box {
